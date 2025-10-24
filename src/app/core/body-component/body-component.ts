@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CarCardComponent } from '../../car-card-component/car-card-component';
+import { CarCardComponent } from '../../shared/car-card-component/car-card-component';
 
 @Component({
   selector: 'app-body-component',
