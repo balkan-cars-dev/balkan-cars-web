@@ -30,10 +30,7 @@
                 "output": "/assets/"
               }
             ],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
-            ]
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
@@ -89,10 +86,7 @@
                 "output": "/assets/"
               }
             ],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
-            ]
+            "styles": ["src/styles.scss"]
           }
         }
       }
