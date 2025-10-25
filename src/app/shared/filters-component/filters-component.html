@@ -1,0 +1,59 @@
+<div class="car-filter-box">
+    <h2 class="title">
+        <span class="icon">🚗</span>
+        Търсене в категория: <span class="highlight">Автомобили</span>
+    </h2>
+
+    <div class="grid">
+        <div>
+            <label>Марка</label>
+            <select [(ngModel)]="filters.brand" class="filter-field">
+                <option *ngFor="let b of brands" [value]="b">{{ b }}</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Модел</label>
+            <input [(ngModel)]="filters.model" type="text"
+                placeholder="Напр. Golf" class="filter-field">
+        </div>
+
+        <div>
+            <label>Максимална цена (лв)</label>
+            <input [(ngModel)]="filters.maxPrice" type="number"
+                placeholder="Напр. 20000" class="filter-field">
+        </div>
+
+        <div>
+            <label>Година</label>
+            <select [(ngModel)]="filters.year" class="filter-field">
+                <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Гориво</label>
+            <select [(ngModel)]="filters.fuel" class="filter-field">
+                <option *ngFor="let f of fuels" [value]="f">{{ f }}</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Скоростна кутия</label>
+            <select [(ngModel)]="filters.transmission" class="filter-field">
+                <option *ngFor="let t of transmissions" [value]="t">{{ t
+                    }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="checkboxes">
+        <label><input type="checkbox" [(ngModel)]="filters.new"> Нов</label>
+        <label><input type="checkbox" [(ngModel)]="filters.used">
+            Употребяван</label>
+    </div>
+
+    <div class="actions">
+        <button (click)="onSearch()">🔍 Търси</button>
+    </div>
+</div>
