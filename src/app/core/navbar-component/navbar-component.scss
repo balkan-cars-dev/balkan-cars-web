@@ -11,19 +11,26 @@
 .topnav {
   background-color: #000000;
   overflow: hidden;
-  text-align: right; /* 👈 aligns content to the right */
+  text-align: right;
 }
 
 .topnav a {
-  display: inline-block; /* 👈 ensure links line up properly */
+  display: inline-block;
   color: #f2f2f2;
   text-align: center;
   padding: 20px 28px;
   text-decoration: none;
   font-size: 16px;
+  transition: all 0.2s;
 }
 
 .topnav a:hover {
   background-color: #ddd;
   color: black;
 }
+
+.topnav a.active {
+  background-color: #ddd;
+  color: black;
+}
+

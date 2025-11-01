@@ -1,19 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-
-export interface CarListing {
-  id: number;
-  make: string;
-  model: string;
-  details: string;
-  priceEur: number;
-  priceBgn: number;
-  mileage: number;
-  region: string;
-  date: string; // example: '10:15 часа на 24.10.'
-  imageUrl: string;
-  badge?: 'BEST' | 'TOP' | string;
-}
+import {CarListing} from '../../Interfaces/car-interface';
 
 @Component({
   selector: 'app-car-card-component',

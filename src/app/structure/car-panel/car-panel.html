@@ -1,1 +1,7 @@
-<p>car-panel works!</p>
+<app-filters-component (search)="onCarSearch($event)"></app-filters-component>
+
+<div class="car-list">
+  @for (car of cars$ | async; track car.id) {
+    <app-car-card-component [car]="car"></app-car-card-component>
+  }
+</div>

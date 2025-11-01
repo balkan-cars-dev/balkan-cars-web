@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
-import { CarCardComponent } from '../../shared/car-card-component/car-card-component';
-import { FiltersComponent } from '../../shared/filters-component/filters-component';
+import {Component, Input} from '@angular/core';
+import { CarPartsPanel } from '../../structure/car-parts-panel/car-parts-panel';
+import { CarPanel } from '../../structure/car-panel/car-panel';
+import { BlogPanel } from '../../structure/blog-panel/blog-panel';
 
 @Component({
   selector: 'app-body-component',
-  imports: [CarCardComponent, FiltersComponent],
+  imports: [CarPanel, CarPartsPanel, BlogPanel],
   templateUrl: './body-component.html',
   styleUrl: './body-component.scss',
 })
 export class BodyComponent {
-  onCarSearch(filters: any) {
-    console.log('Search filters:', filters);
-  }
+  @Input() selected: 'vehicles' | 'carparts' | 'blog' = 'vehicles';
 }

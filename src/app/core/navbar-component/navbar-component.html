@@ -3,9 +3,18 @@
     <img src="../../../assets/images.png" alt="logo" style="width: 240px;">
   </div>
   <div class="topnav">
-    <a class="active" href="#vehicles">Vehicles</a>
-    <a href="#carparts">Car Parts</a>
-    <a href="#blog">Blog</a>
-    <a href="#login">Log in</a>
+    <a href="#"
+       [class.active]="selected === 'vehicles'"
+       (click)="select('vehicles')"
+    >Обяви</a>
+    <a href="#"
+       [class.active]="selected === 'carparts'"
+       (click)="select('carparts')"
+    >Авточасти</a>
+    <a href="#"
+       [class.active]="selected === 'blog'"
+       (click)="select('blog')"
+    >Блог</a>
+    <a href="#">Вход</a>
   </div>
 </div>
