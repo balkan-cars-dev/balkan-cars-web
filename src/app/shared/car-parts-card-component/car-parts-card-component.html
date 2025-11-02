@@ -1,0 +1,24 @@
+
+<div class="car-part-card">
+  <img
+    src="assets/parts/{{ part.imageUri | lowercase }}"
+    alt="{{ part.category }}"
+    class="car-part-image"
+  />
+
+  <div class="car-part-info">
+    <h3 class="car-part-title">
+      {{ part.state }} {{ part.category }} за {{ part.manufacturer }}
+    </h3>
+    <p class="car-part-description">
+      {{ part.description }}
+    </p>
+    <p class="car-part-location">
+      <!--Публикувано: {{ part.updatedTs | date: 'd MMMM y г.' }} -->
+    </p>  </div>
+
+  <div class="car-part-meta">
+    <span class="car-part-price">{{ part.price }} лв.</span>
+    <span class="favorite-icon">♡</span>
+  </div>
+</div>
