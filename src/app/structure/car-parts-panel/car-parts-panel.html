@@ -1,0 +1,16 @@
+<div class="car-parts-list">
+  @for (part of parts$ | async; track part.id) {
+    <app-car-parts-card-component [part]="part"></app-car-parts-card-component>
+  }
+  <app-car-parts-card-component
+    [part]="{
+    id: '1',
+    category: 'спирачни дискове',
+    state: 'предни',
+    price: 500,
+    manufacturer: 'BMW E60 535',
+    description: 'Продавам нови дискове размер 320мм',
+    imageUri: 'br.jpg',
+  }"
+  ></app-car-parts-card-component>
+</div>

@@ -1,0 +1,78 @@
+.car-part-card {
+  max-width: 800px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 0;
+  margin: 10px 0;
+  color: #e0e0e0;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.car-part-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.car-part-image {
+  width: 160px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-part-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 14px 18px;
+}
+
+.car-part-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.car-part-location {
+  margin: 0;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.car-part-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 14px 18px;
+}
+
+.car-part-price {
+  font-weight: 800;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+}
+
+.favorite-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s ease, transform 0.2s ease;
+  margin-top: auto;
+}
+
+.favorite-icon:hover {
+  color: #ef4444;
+  transform: scale(1.15);
+}
+
+.car-parts-list {
+  margin-left: 25px;
+}
