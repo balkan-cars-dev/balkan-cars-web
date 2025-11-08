@@ -1,0 +1,12 @@
+<div class="blog-card">
+  <div class="blog-header">
+    <img src="blog.image" alt="{{ blog.title }}" />
+  </div>
+
+  <div class="blog-content">
+    <h2 class="title">{{ blog.title }}</h2>
+    <p class="date">{{ blog.publishedDate | date:'MMM d, y' }}</p>
+    <p class="summary">{{ blog.summary }}</p>
+    <a class="read-more" [href]="blog.link" target="_blank">Read more →</a>
+  </div>
+</div>

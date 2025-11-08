@@ -12,6 +12,6 @@ export class CarsService {
   }
 
   getAllCars(): Observable<CarListing[]> {
-    return this.http.get<CarListing[]>('https://localhost:8080/cars')
+    return this.http.get<CarListing[]>('http://localhost:8080/cars')
   }
 }

@@ -12,6 +12,6 @@ export class CarPartsService {
   }
 
   getAllPart(): Observable<CarPartsInterface[]> {
-    return this.http.get<CarPartsInterface[]>("https://localhost:8080/parts")
+    return this.http.get<CarPartsInterface[]>("http://localhost:8080/parts")
   }
 }
