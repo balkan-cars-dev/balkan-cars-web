@@ -1,0 +1,6 @@
+
+<div class="blog-list">
+  @for (blog of blog$ | async; track blog.id) {
+<app-blog-component [blog]="blog"></app-blog-component>
+  }
+</div>
