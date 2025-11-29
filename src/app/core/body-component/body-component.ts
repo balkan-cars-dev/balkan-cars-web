@@ -13,7 +13,7 @@ import { AddListingComponent } from '../../shared/add-listing/add-listing-compon
     AddListingComponent   // ADD THIS
   ],
   templateUrl: './body-component.html',
-  styleUrl: './body-component.scss',
+  styleUrls: ['./body-component.scss'],
 })
 export class BodyComponent {
   @Input() selected:
