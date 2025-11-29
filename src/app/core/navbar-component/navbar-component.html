@@ -15,6 +15,9 @@
        [class.active]="selected === 'blog'"
        (click)="select('blog')"
     >Блог</a>
-    <a href="#">Вход</a>
+    <a href="#"
+     [class.active]="selected === 'login'"
+     (click)="select('login')"
+     >Вход</a>
   </div>
 </div>
