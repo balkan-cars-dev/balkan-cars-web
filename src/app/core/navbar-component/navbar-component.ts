@@ -6,14 +6,15 @@ import {Component, EventEmitter, Output} from '@angular/core';
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.scss'
 })
+
 export class NavbarComponent {
 
-  @Output() sectionChange = new EventEmitter<'vehicles' | 'carparts' | 'blog' | 'add'>();
+  @Output() sectionChange = new EventEmitter<'vehicles' | 'add' | 'carparts' | 'blog' | 'login'>();
 
-selected: 'vehicles' | 'carparts' | 'blog' | 'add' = 'vehicles';
+  selected: 'vehicles' | 'add' | 'carparts' | 'blog' | 'login' = 'vehicles';
 
-select(section: 'vehicles' | 'carparts' | 'blog' | 'add') {
-  this.selected = section;
-  this.sectionChange.emit(section);
-}
+  select(section: 'vehicles' | 'add' | 'carparts' | 'blog' | 'login') {
+    this.selected = section;
+    this.sectionChange.emit(section);
+  }
 }

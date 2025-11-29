@@ -17,6 +17,6 @@ import { AddListingComponent } from '../../shared/add-listing/add-listing-compon
 })
 export class BodyComponent {
   @Input() selected:
-    'vehicles' | 'carparts' | 'blog' | 'add' = 'vehicles';
+    'vehicles' | 'add'| 'carparts' | 'blog' | 'login' = 'vehicles';
 }
 
