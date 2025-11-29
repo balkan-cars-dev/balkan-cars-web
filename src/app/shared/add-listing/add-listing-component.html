@@ -1,0 +1,102 @@
+<div class="add-listing-container">
+
+  <h2>Добави нова обява</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="grid">
+
+      <!-- LEFT COLUMN -->
+      <div class="column">
+
+        <label>Марка</label>
+        <input formControlName="make" type="text"/>
+
+        <label>Модел</label>
+        <input formControlName="model" type="text"/>
+
+        <label>Година</label>
+        <input formControlName="year" type="number"/>
+
+        <label>Пробег</label>
+        <input formControlName="mileage" type="number"/>
+
+        <label>Цена (EUR)</label>
+        <input formControlName="priceEur" type="number"/>
+
+        <label>Регион</label>
+        <input formControlName="region" type="text"/>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="column">
+
+        <label>Гориво</label>
+        <select formControlName="fuelType">
+          <option value="">Изберете...</option>
+          <option *ngFor="let f of fuelTypes" [value]="f">{{ fuelTypeLabels[f] }}</option>
+        </select>
+
+        <label>Скоростна кутия</label>
+        <select formControlName="transmission">
+          <option value="">Изберете...</option>
+          <option *ngFor="let t of transmission" [value]="t">{{ transmissionLabels[t] }}</option>
+        </select>
+
+        <label>Състояние</label>
+        <select formControlName="state">
+          <option value="">Изберете...</option>
+          <option *ngFor="let s of states" [value]="s">{{ stateLabels[s] }}</option>
+        </select>
+
+        <label>VIN</label>
+        <input formControlName="vin" type="text"/>
+
+        <label>Мощност (к.с.)</label>
+        <input formControlName="enginePower" type="number"/>
+
+        <label>Цвят</label>
+        <input formControlName="color" type="text"/>
+
+        <label>Описание</label>
+        <textarea formControlName="description"></textarea>
+
+      </div>
+
+    </div>
+
+    <!-- EXTRAS -->
+    <h3>Екстри</h3>
+    <div class="extras">
+
+      <div class="category" *ngFor="let c of extras">
+        <h4>{{ c.category }}</h4>
+
+        <div class="extra-list">
+          <label *ngFor="let e of c.items" class="extra-item">
+            <input 
+              type="checkbox" 
+              [checked]="isExtraSelected(e)"
+              (change)="onExtrasChange(e, $event)"
+            >
+            <span>{{ extraLabels[e] }}</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- IMAGES -->
+    <label>Снимки</label>
+    <input type="file" multiple accept="image/*" (change)="uploadImages($event)" />
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="form.invalid" class="btn-submit">
+        Публикувай
+      </button>
+    </div>
+
+  </form>
+
+</div>

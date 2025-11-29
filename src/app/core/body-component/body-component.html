@@ -1,7 +1,12 @@
 @if (selected === 'vehicles') {
   <app-car-panel></app-car-panel>
-} @else if (selected === 'carparts') {
+}
+@else if (selected === 'carparts') {
   <app-car-parts-panel></app-car-parts-panel>
-} @else if (selected === 'blog') {
+}
+@else if (selected === 'blog') {
   <app-blog-panel></app-blog-panel>
+}
+@else if (selected === 'add') {
+  <app-add-listing-component></app-add-listing-component>
 }

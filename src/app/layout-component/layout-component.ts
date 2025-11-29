@@ -9,6 +9,7 @@ import { FooterComponent } from '../core/footer-component/footer-component';
   templateUrl: './layout-component.html',
   styleUrl: './layout-component.scss',
 })
+
 export class LayoutComponent {
-  selected: 'vehicles' | 'carparts' | 'blog' = 'vehicles';
+  selected: 'vehicles' | 'carparts' | 'blog' | 'add' = 'vehicles';
 }

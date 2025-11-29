@@ -8,12 +8,12 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class NavbarComponent {
 
-  @Output() sectionChange = new EventEmitter<'vehicles' | 'carparts' | 'blog'>();
+  @Output() sectionChange = new EventEmitter<'vehicles' | 'carparts' | 'blog' | 'add'>();
 
-  selected: 'vehicles' | 'carparts' | 'blog' = 'vehicles';
+selected: 'vehicles' | 'carparts' | 'blog' | 'add' = 'vehicles';
 
-  select(section: 'vehicles' | 'carparts' | 'blog') {
-    this.selected = section;
-    this.sectionChange.emit(section);
-  }
+select(section: 'vehicles' | 'carparts' | 'blog' | 'add') {
+  this.selected = section;
+  this.sectionChange.emit(section);
+}
 }
