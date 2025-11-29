@@ -3,6 +3,7 @@ import { CarPartsPanel } from '../../structure/car-parts-panel/car-parts-panel';
 import { CarPanel } from '../../structure/car-panel/car-panel';
 import { BlogPanel } from '../../structure/blog-panel/blog-panel';
 import { AddListingComponent } from '../../shared/add-listing/add-listing-component';
+import { LoginComponent } from "../login-component/login.component";
 
 @Component({
   selector: 'app-body-component',
@@ -10,7 +11,8 @@ import { AddListingComponent } from '../../shared/add-listing/add-listing-compon
     CarPanel,
     CarPartsPanel,
     BlogPanel,
-    AddListingComponent   // ADD THIS
+    AddListingComponent,
+    LoginComponent 
   ],
   templateUrl: './body-component.html',
   styleUrls: ['./body-component.scss'],
