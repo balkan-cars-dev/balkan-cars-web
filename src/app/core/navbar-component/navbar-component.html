@@ -2,20 +2,29 @@
   <div class="logo">
     <img src="../../../assets/images.png" alt="logo" style="width: 240px;">
   </div>
+
   <div class="topnav">
     <a href="#"
        [class.active]="selected === 'vehicles'"
        (click)="select('vehicles')"
     >Обяви</a>
+
+  <a href="#"
+     [class.active]="selected === 'add'"
+     (click)="select('add')"
+  >Добави обява</a>
+
     <a href="#"
        [class.active]="selected === 'carparts'"
        (click)="select('carparts')"
     >Авточасти</a>
+
     <a href="#"
        [class.active]="selected === 'blog'"
        (click)="select('blog')"
     >Блог</a>
-    <a href="#"
+
+     <a href="#"
      [class.active]="selected === 'login'"
      (click)="select('login')"
      >Вход</a>

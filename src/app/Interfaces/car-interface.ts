@@ -1,5 +1,5 @@
 export interface CarListing {
-  id: number;
+  id: string;
   make: string;
   model: string;
   details: string;
