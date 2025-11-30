@@ -11,5 +11,5 @@ import { FooterComponent } from '../core/footer-component/footer-component';
 })
 
 export class LayoutComponent {
-  selected: 'vehicles' | 'carparts' | 'blog' | 'add' = 'vehicles';
+  selected: 'vehicles' | 'carparts' | 'blog' | 'add' | 'login' = 'vehicles';
 }
