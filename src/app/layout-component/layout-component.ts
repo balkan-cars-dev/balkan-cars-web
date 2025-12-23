@@ -11,5 +11,6 @@ import { FooterComponent } from '../core/footer-component/footer-component';
 })
 
 export class LayoutComponent {
-  selected: 'vehicles' | 'carparts' | 'blog' | 'add' | 'login' = 'vehicles';
+  // Add 'my-listings' to the allowed types
+  selected: 'vehicles' | 'carparts' | 'blog' | 'add' | 'login' | 'my-listings' = 'vehicles';
 }

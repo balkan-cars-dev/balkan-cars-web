@@ -1,32 +1,26 @@
 <div class="navbar">
   <div class="logo">
-    <img src="../../../assets/images.png" alt="logo" style="width: 240px;">
+    <img src="../../../assets/images.png" alt="logo" style="width: 200px;">
   </div>
 
   <div class="topnav">
-    <a href="#"
-       [class.active]="selected === 'vehicles'"
-       (click)="select('vehicles')"
-    >Обяви</a>
+    <a href="javascript:void(0)" [class.active]="selected === 'vehicles'" (click)="select('vehicles')">Обяви</a>
+    <a href="javascript:void(0)" [class.active]="selected === 'add'" (click)="select('add')">Добави обява</a>
+    <a href="javascript:void(0)" [class.active]="selected === 'carparts'" (click)="select('carparts')">Авточасти</a>
+    <a href="javascript:void(0)" [class.active]="selected === 'blog'" (click)="select('blog')">Блог</a>
 
-  <a href="#"
-     [class.active]="selected === 'add'"
-     (click)="select('add')"
-  >Добави обява</a>
+    <a *ngIf="!isLoggedIn" href="javascript:void(0)" [class.active]="selected === 'login'" (click)="select('login')">Вход</a>
 
-    <a href="#"
-       [class.active]="selected === 'carparts'"
-       (click)="select('carparts')"
-    >Авточасти</a>
-
-    <a href="#"
-       [class.active]="selected === 'blog'"
-       (click)="select('blog')"
-    >Блог</a>
-
-     <a href="#"
-     [class.active]="selected === 'login'"
-     (click)="select('login')"
-     >Вход</a>
+    <div *ngIf="isLoggedIn" class="user-menu">
+      <div class="username-link" (click)="toggleDropdown($event)">
+        <span>{{ username }}</span>
+        <span class="dropdown-arrow" [style.transform]="showDropdown ? 'rotate(180deg)' : 'none'">▼</span>
+      </div>
+      
+      <div class="dropdown-menu" *ngIf="showDropdown">
+         <a href="javascript:void(0)" (click)="select('my-listings')">Моите обяви</a>
+         <a href="javascript:void(0)" (click)="logout()">Изход</a>
+      </div>
+    </div>
   </div>
 </div>
