@@ -8,6 +8,7 @@ import { FuelType, FuelTypeLabels } from '../../core/enums/FuelType';
 import { TransmissionType, TransmissionTypeLabels } from '../../core/enums/TransmissionType';
 import { State, StateLabels } from '../../core/enums/State';
 import { ExtrasByCategory, ExtraLabels } from './extras-grouped';
+import { AuthService } from '../../core/login-component/auth.service';
 
 @Component({
   selector: 'app-add-listing-component',
@@ -36,7 +37,8 @@ export class AddListingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private listingService: ListingService,
-    private carsService: CarsService
+    private carsService: CarsService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -128,7 +130,7 @@ export class AddListingComponent implements OnInit {
           title: title,
           description: f.description,
           carId: carId,
-          sellerId: null, // fill with logged-in user ID
+          sellerId: this.authService.getUserId(), 
           price: f.priceEur,
           isActive: true,
           extras: f.extras,

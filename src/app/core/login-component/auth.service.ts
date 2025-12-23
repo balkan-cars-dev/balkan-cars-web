@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 interface AuthResponse {
   token: string;
+  userId: string; // Matches your updated Java LoginResponse
 }
 
 interface RegisterResponse {
@@ -26,6 +27,7 @@ interface RegisterRequest {
 export class AuthService {
   private baseUrl = 'http://localhost:8080';
   private tokenKey = 'jwtToken';
+  private userIdKey = 'userId'; // Key for local storage
   
   // Track authentication state
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
@@ -39,7 +41,9 @@ export class AuthService {
       { email, password }
     ).pipe(
       tap(res => {
+        // Save both token and userId to localStorage
         this.setToken(res.token);
+        localStorage.setItem(this.userIdKey, res.userId);
         this.isAuthenticatedSubject.next(true);
       })
     );
@@ -51,7 +55,6 @@ export class AuthService {
       data
     ).pipe(
       tap(res => {
-        // If backend returns token, store it and mark as authenticated
         if (res.token) {
           this.setToken(res.token);
           this.isAuthenticatedSubject.next(true);
@@ -60,8 +63,18 @@ export class AuthService {
     );
   }
 
+  /**
+   * Retrieves the current user's ID.
+   * Prioritizes the stored ID, falls back to decoding the JWT.
+   */
+  getUserId(): string {
+    // 1. Check direct storage first
+    return localStorage.getItem(this.userIdKey) || '';
+  }
+
   logout(): void {
     this.removeToken();
+    localStorage.removeItem(this.userIdKey);
     this.isAuthenticatedSubject.next(false);
   }
 
