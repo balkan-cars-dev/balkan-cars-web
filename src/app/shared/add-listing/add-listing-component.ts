@@ -58,7 +58,7 @@ export class AddListingComponent implements OnInit {
 
       extras: [[]],
       description: ['', Validators.maxLength(500)],
-      imageUrls: [[]], // for now string URLs
+      imageUrls: [[]],
     });
   }
 
