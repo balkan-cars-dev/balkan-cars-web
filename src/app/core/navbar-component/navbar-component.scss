@@ -19,9 +19,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   /* Styling */
-  background-color: var(--white);
+  background-color: black;
   padding: 0 40px;
   height: var(--nav-height);
   box-shadow: var(--shadow-sm);
@@ -37,7 +37,7 @@
     display: block;
     width: 400px;
     transition: var(--transition);
-    
+
     &:hover {
       transform: scale(1.03);
       filter: brightness(1.05);
@@ -52,7 +52,7 @@
 
   a {
     text-decoration: none;
-    color: var(--text-muted);
+    color: white;
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: 500;
@@ -62,13 +62,13 @@
     /* The "First World" Hover: Subtle but clear */
     &:hover {
       background-color: var(--bg-hover);
-      color: var(--primary-blue);
+      color: black;
     }
 
     /* The "Second World" Active: High visibility */
     &.active {
-      color: var(--primary-blue);
-      background-color: #e7f3ff;
+      color: black;
+      background-color: white;
       font-weight: 600;
     }
   }
@@ -129,7 +129,7 @@
       color: var(--text-dark);
       border-radius: 8px;
       border: none;
-      
+
       &:hover {
         background-color: var(--bg-hover);
         color: var(--primary-blue);
@@ -141,7 +141,7 @@
         margin-top: 5px;
         border-top: 1px solid #f5f5f5;
         border-radius: 0 0 8px 8px;
-        
+
         &:hover {
           background-color: #fff5f5;
         }
