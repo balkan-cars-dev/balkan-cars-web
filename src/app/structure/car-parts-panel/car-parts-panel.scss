@@ -2,3 +2,32 @@
   margin-left: 20px;
   margin-top: 70px;
 }
+
+:host ::ng-deep .small-extended-fab {
+  background-color: black !important;
+  color: white;
+  font-weight: 600;
+  height: 52px;
+  min-width: 110px;
+  padding: 0 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* add top margin as needed */
+  margin-left: 20px; /* add left margin as needed */
+}
+
+:host ::ng-deep .small-extended-fab:hover {
+  background-color: green !important;
+}
+
+:host ::ng-deep .small-extended-fab mat-icon {
+  color: white;
+  font-size: 22px;
+  margin-right: 5px;
+}
