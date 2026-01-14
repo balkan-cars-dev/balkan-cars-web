@@ -1,0 +1,56 @@
+.dialog-content {
+  padding: 20px;
+  background-color: #2c2c2c; 
+  color: #f0f0f0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.image-upload {
+  margin: 15px 0;
+}
+
+#imageInput {
+  display: block;
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #444; 
+  color: #f0f0f0; 
+  border: 1px solid #666; 
+  border-radius: 4px;
+}
+
+.preview {
+  margin-top: 10px;
+}
+
+.preview img {
+  max-width: 100px;
+  max-height: 100px;
+  border: 1px solid #555; 
+  border-radius: 4px;
+  background-color: #222; 
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dialog-actions button {
+  padding: 8px 16px;
+  background-color: #444;
+  color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dialog-actions button:hover {
+  background-color: #555;
+}
