@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CarListing } from '../../Interfaces/car-interface';
 
 @Component({
   selector: 'app-filters-component',
@@ -11,9 +12,12 @@ import { FormsModule } from '@angular/forms';
 export class FiltersComponent {
   @Output() search = new EventEmitter<any>();
 
+  cars: CarListing[] = [];          // original (all cars you already fetched once)
+  filteredCars: CarListing[] = [];  // what you render
+
   brands = ['Всички', 'BMW', 'Audi', 'Mercedes-Benz', 'Volkswagen', 'Toyota'];
-  fuels = ['Всички', 'Бензин', 'Дизел', 'Хибрид', 'Електрически'];
-  transmissions = ['Всички', 'Ръчна', 'Автоматична'];
+  fuels = ['All', 'PETROL', 'DISEL', 'HYBRID', 'ELECTRIC'];
+  transmissions = ['All', 'MANUAL', 'AUTOMATIC'];
   years = ['Всички', '2025', '2024', '2023', '2022', '2021'];
 
   filters = {
@@ -31,4 +35,33 @@ export class FiltersComponent {
   onSearch() {
     this.search.emit(this.filters);
   }
+
+  onFiltersChanged(filters: any) {
+  this.filteredCars = this.cars.filter(car => {
+    const brandOk =
+      filters.brand === 'Всички' || car.brand === filters.brand;
+
+    const modelOk =
+      !filters.model || (car.model ?? '').toLowerCase().includes(filters.model.toLowerCase());
+
+    const yearOk =
+      filters.year === 'Всички' || String(car.year) === String(filters.year);
+
+    const priceOk =
+      !filters.maxPrice || (car.price ?? 0) <= Number(filters.maxPrice);
+
+    const fuelOk =
+      filters.fuel === 'Всички' || car.fuel === filters.fuel;
+
+    const transOk =
+      filters.transmission === 'Всички' || car.transmission === filters.transmission;
+
+    const stateOk =
+      (filters.new && car.state === 'NEW') ||
+      (filters.used && car.state === 'USED') ||
+      (filters.damaged && car.state === 'DAMAGED');
+
+    return brandOk && modelOk && yearOk && priceOk && fuelOk && transOk && stateOk;
+  });
+}
 }
