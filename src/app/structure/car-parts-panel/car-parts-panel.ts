@@ -37,4 +37,15 @@ export class CarPartsPanel {
     });
   }
 
+  showFavourites = false;
+
+  toggleFavourites() {
+    this.showFavourites = !this.showFavourites;
+
+    // later:
+    // this.parts$ = this.showFavourites
+    //   ? this.partsService.getFavourites()
+    //   : this.partsService.getAll();
+  }
+
 }

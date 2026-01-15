@@ -1,20 +1,16 @@
-.car-parts-list {
-  margin-left: 20px;
-  margin-top: 20px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+/* ===============================
+   Toolbar (Add + Favourite)
+   =============================== */
+.car-parts-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 20px 12px;
 }
 
-/* Responsive – 1 карта на ред за мобилни */
-@media (max-width: 900px) {
-  .car-parts-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* FAB button */
+/* ===============================
+   Add Button (FAB)
+   =============================== */
 :host ::ng-deep .small-extended-fab {
   background-color: black !important;
   color: white;
@@ -30,16 +26,70 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 20px;
-  margin-left: 20px;
 }
 
 :host ::ng-deep .small-extended-fab:hover {
   background-color: green !important;
 }
 
-:host ::ng-deep .small-extended-fab mat-icon {
-  color: white;
-  font-size: 22px;
-  margin-right: 5px;
+/* ===============================
+   Favourite Toggle Button
+   =============================== */
+.favourite-toggle {
+  background-color: #000;
+  color: #fff !important;
+  border-radius: 16px;
+  padding: 10px 18px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+/* Heart icon */
+.favourite-toggle .heart {
+  font-size: 20px;
+  color: #ef4444;
+}
+
+/* Hover → pink */
+.favourite-toggle:hover {
+  background-color: #ec4899; /* pink */
+}
+
+/* Active (toggled ON) */
+.favourite-toggle.active {
+  background-color: #be185d; /* darker pink */
+}
+
+.favourite-toggle.active .heart {
+  color: #fff !important;
+}
+
+/* ===============================
+   Cards Grid
+   =============================== */
+.car-parts-list {
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ===============================
+   Responsive (Mobile)
+   =============================== */
+@media (max-width: 900px) {
+  .car-parts-list {
+    grid-template-columns: 1fr;
+  }
+
+  .car-parts-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
 }

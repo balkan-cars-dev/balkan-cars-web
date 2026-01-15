@@ -1,16 +1,25 @@
-<button
-  mat-fab
-  extended
-  class="small-extended-fab"
-  (click)="openAddDialog()"
->
-  Add
-</button>
+<div class="car-parts-toolbar">
+  <button
+    mat-fab
+    extended
+    class="small-extended-fab"
+    (click)="openAddDialog()"
+  >
+    Add
+  </button>
+
+  <button
+    mat-stroked-button
+    class="favourite-toggle"
+    (click)="toggleFavourites()"
+  >
+    <span class="heart">♡</span>
+    Favourites
+  </button>
+</div>
 
 <div class="car-parts-list">
   @for (part of parts$ | async; track part.id) {
-    <app-car-parts-card-component
-      [part]="part">
-    </app-car-parts-card-component>
+    <app-car-parts-card-component [part]="part"></app-car-parts-card-component>
   }
 </div>
