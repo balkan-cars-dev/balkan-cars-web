@@ -132,6 +132,7 @@ export class AddListingComponent implements OnInit {
           carId: carId,
           sellerId: this.authService.getUserId(), 
           price: f.priceEur,
+          location: f.region,
           isActive: true,
           extras: f.extras,
           groupedExtras: groupedExtras,

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CarListing } from '../../Interfaces/car-interface';
 import { WishlistService } from '../../services/wishlist-service';
 
@@ -12,6 +12,7 @@ import { WishlistService } from '../../services/wishlist-service';
 })
 export class CarCardComponent implements OnInit {
   @Input() car!: CarListing;
+  @Output() cardClick = new EventEmitter<CarListing>();
 
   isWishlisted = false;
   loading = false;
@@ -24,7 +25,12 @@ export class CarCardComponent implements OnInit {
     });
   }
 
-  toggleWishlist() {
+  onCardClick() {
+    this.cardClick.emit(this.car);
+  }
+
+  toggleWishlist(event: Event) {
+    event.stopPropagation();
     if (this.loading) return;
     this.loading = true;
 

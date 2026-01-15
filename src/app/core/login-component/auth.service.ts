@@ -9,8 +9,10 @@ interface AuthResponse {
 }
 
 interface RegisterResponse {
-  token?: string;
-  message?: string;
+  token: string;
+  email: string;
+  userId: string;
+  firstName: string;
 }
 
 interface RegisterRequest {
@@ -55,10 +57,9 @@ export class AuthService {
       data
     ).pipe(
       tap(res => {
-        if (res.token) {
-          this.setToken(res.token);
-          this.isAuthenticatedSubject.next(true);
-        }
+        this.setToken(res.token);
+        localStorage.setItem(this.userIdKey, res.userId);
+        this.isAuthenticatedSubject.next(true);
       })
     );
   }

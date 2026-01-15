@@ -1,7 +1,7 @@
-<div class="car-card">
+<div class="car-card" (click)="onCardClick()">
 
   <!-- ❤️ Wishlist icon -->
-  <div class="wishlist-icon" (click)="toggleWishlist()">
+  <div class="wishlist-icon" (click)="toggleWishlist($event)">
     <i
       class="fa-heart"
       [ngClass]="{

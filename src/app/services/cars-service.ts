@@ -17,7 +17,11 @@ export class CarsService {
     return this.http.get<CarListing[]>(this.baseUrl)
   }
 
+  getCarById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
   createCar(car: CarDto): Observable<CarListing> {
-  return this.http.post<CarListing>(this.baseUrl, car);
-}
+    return this.http.post<CarListing>(this.baseUrl, car);
+  }
 }

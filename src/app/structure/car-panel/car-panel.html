@@ -2,6 +2,14 @@
 
 <div class="car-list">
   @for (car of filteredCars$ | async; track car.id) {
-    <app-car-card-component [car]="car"></app-car-card-component>
+    <app-car-card-component [car]="car" (cardClick)="onCardClick($event)"></app-car-card-component>
   }
 </div>
+
+<app-listing-detail-modal 
+  [listing]="selectedListing" 
+  [isOpen]="isModalOpen"
+  [showDelete]="mode === 'my-listings'"
+  (close)="closeModal()"
+  (deleteClick)="deleteListing($event)">
+</app-listing-detail-modal>

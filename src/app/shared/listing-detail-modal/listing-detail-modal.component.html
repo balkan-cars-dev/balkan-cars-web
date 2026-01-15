@@ -1,0 +1,65 @@
+<div class="modal-backdrop" *ngIf="isOpen" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">
+      <i class="fa fa-times"></i>
+    </button>
+
+    <div class="modal-body" *ngIf="listing">
+      <div class="modal-header">
+        <h2>{{ listing.brand }} {{ listing.model }}</h2>
+        <div class="price-large">{{ listing.price | number : '1.0-2' }} €</div>
+      </div>
+
+      <div class="modal-details">
+        <div class="detail-row">
+          <span class="label">Година:</span>
+          <span class="value">{{ listing.year }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Пробег:</span>
+          <span class="value">{{ listing.mileage | number }} км</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Гориво:</span>
+          <span class="value">{{ listing.fuel }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Трансмисия:</span>
+          <span class="value">{{ listing.transmission }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Локация:</span>
+          <span class="value">{{ listing.region }}</span>
+        </div>
+        <div class="detail-row" *ngIf="listing.carData?.color">
+          <span class="label">Цвят:</span>
+          <span class="value">{{ listing.carData.color }}</span>
+        </div>
+        <div class="detail-row" *ngIf="listing.carData?.enginePower">
+          <span class="label">Мощност:</span>
+          <span class="value">{{ listing.carData.enginePower }} к.с.</span>
+        </div>
+      </div>
+
+      <div class="description" *ngIf="listing.listingData?.description">
+        <h3>Описание</h3>
+        <p>{{ listing.listingData.description }}</p>
+      </div>
+
+      <div class="extras" *ngIf="listing.listingData?.extras?.length">
+        <h3>Екстри</h3>
+        <div class="extras-list">
+          <span class="extra-badge" *ngFor="let extra of listing.listingData.extras">
+            {{ extra }}
+          </span>
+        </div>
+      </div>
+
+      <div class="modal-actions" *ngIf="showDelete">
+        <button class="delete-btn" (click)="onDelete()">
+          <i class="fa fa-trash"></i> Изтрий листинг
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

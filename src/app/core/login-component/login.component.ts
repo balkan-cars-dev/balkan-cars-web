@@ -69,17 +69,8 @@ export class LoginComponent {
     this.errorMessage = '';
     this.authService.register(this.registerData).subscribe({
       next: (res) => {
-        // If backend returns JWT token, navigate to cars
-        if (res?.token) {
-          this.clearForms(); // Clear form before navigation
-          this.router.navigate(['/cars']);
-        } else {
-          // Switch to login mode after successful registration
-          this.isRegisterMode = false;
-          this.email = this.registerData.email;
-          this.clearForms(); // Clear registration form
-          this.errorMessage = 'Registration successful! Please log in.';
-        }
+        this.clearForms();
+        this.router.navigate(['/cars']);
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Registration failed';
