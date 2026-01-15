@@ -67,9 +67,14 @@
   cursor: pointer;
   color: #aaa;
   transition: color 0.2s ease, transform 0.2s ease;
+  user-select: none;
 }
 
 .favorite-icon:hover {
   color: #ef4444;
   transform: scale(1.15);
+}
+
+.favorite-icon.favorited {
+  color: #ef4444;
 }

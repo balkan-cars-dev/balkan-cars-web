@@ -21,6 +21,6 @@
 
   <div class="car-part-meta">
     <span class="car-part-price">{{ part.price }} лв.</span>
-    <span class="favorite-icon">♡</span>
+    <span class="favorite-icon" [class.favorited]="isFavorite" (click)="onFavoriteClick($event)">{{ isFavorite ? '♥' : '♡' }}</span>
   </div>
 </div>

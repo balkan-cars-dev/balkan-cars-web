@@ -11,15 +11,20 @@
   <button
     mat-stroked-button
     class="favourite-toggle"
+    [class.active]="showFavourites"
     (click)="toggleFavourites()"
   >
-    <span class="heart">♡</span>
-    Favourites
+    <span class="heart">{{ showFavourites ? '' : '♡' }}</span>
+    {{ showFavourites ? 'Покажи всички' : 'Любими' }}
   </button>
 </div>
 
 <div class="car-parts-list">
   @for (part of parts$ | async; track part.id) {
-    <app-car-parts-card-component [part]="part"></app-car-parts-card-component>
+    <app-car-parts-card-component
+      [part]="part"
+      [isFavorite]="isFavorite(part.id)"
+      (favoriteClick)="onFavoriteClick($event)"
+    ></app-car-parts-card-component>
   }
 </div>

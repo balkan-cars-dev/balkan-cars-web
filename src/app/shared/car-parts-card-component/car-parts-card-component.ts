@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {CarPartsInterface} from '../../Interfaces/car-parts-interface';
 import {CommonModule} from '@angular/common';
 
@@ -10,4 +10,11 @@ import {CommonModule} from '@angular/common';
 })
 export class CarPartsCardComponent {
   @Input() part!: CarPartsInterface;
+  @Input() isFavorite: boolean = false;
+  @Output() favoriteClick = new EventEmitter<string>();
+
+  onFavoriteClick(event: Event) {
+    event.stopPropagation();
+    this.favoriteClick.emit(this.part.id);
+  }
 }
