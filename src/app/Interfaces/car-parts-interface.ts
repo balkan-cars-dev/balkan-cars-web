@@ -1,11 +1,14 @@
 
 export interface CarPartsInterface {
   id: string;
-  category: string;
+  subCategory: string;
   state: string;
   price: number;
   manufacturer: string;
   description: string;
+  car: string;
+  quantity: number;
  // updatedTs: Date;
   imageUri: string;
+  userId: string;
 }

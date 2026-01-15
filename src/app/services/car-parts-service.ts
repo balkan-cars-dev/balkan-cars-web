@@ -14,4 +14,8 @@ export class CarPartsService {
   getAllPart(): Observable<CarPartsInterface[]> {
     return this.http.get<CarPartsInterface[]>("http://localhost:8080/parts")
   }
+
+  addPart(part: CarPartsInterface): Observable<CarPartsInterface> {
+    return this.http.post<CarPartsInterface>("http://localhost:8080/parts", part);
+  }
 }

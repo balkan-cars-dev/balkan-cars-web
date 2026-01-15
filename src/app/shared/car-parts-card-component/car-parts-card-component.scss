@@ -1,12 +1,10 @@
 .car-part-card {
-  max-width: 800px;
+  width: 100%;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   background: #1e1e1e;
   border-radius: 8px;
-  padding: 0;
-  margin: 10px 0;
   color: #e0e0e0;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -27,7 +25,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   padding: 14px 18px;
 }
 
@@ -39,8 +36,13 @@
   text-transform: uppercase;
 }
 
-.car-part-location {
-  margin: 0;
+.car-part-description {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 6px;
+}
+
+.car-part-manufacturer {
   font-size: 13px;
   color: #aaa;
 }
@@ -65,14 +67,9 @@
   cursor: pointer;
   color: #aaa;
   transition: color 0.2s ease, transform 0.2s ease;
-  margin-top: auto;
 }
 
 .favorite-icon:hover {
   color: #ef4444;
   transform: scale(1.15);
-}
-
-.car-parts-list {
-  margin-left: 25px;
 }

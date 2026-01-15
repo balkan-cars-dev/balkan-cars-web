@@ -1,0 +1,134 @@
+/* =========================
+   Dialog container (DARK)
+   ========================= */
+::ng-deep .mat-dialog-container {
+  background-color: #121212;
+  color: #e0e0e0;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+/* Title */
+h1[mat-dialog-title] {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Layout */
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Full width fields */
+.full-width {
+  width: 100%;
+}
+
+/* =========================
+   FORM FIELDS (LIGHT)
+   ========================= */
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Labels */
+::ng-deep .mat-form-field-label {
+  color: #555 !important;
+}
+
+/* Input text */
+::ng-deep .mat-input-element,
+::ng-deep textarea.mat-input-element {
+  color: #000000;
+  caret-color: #1976d2;
+}
+
+/* Placeholder */
+::ng-deep .mat-input-element::placeholder {
+  color: #888;
+}
+
+/* Underline / focus */
+::ng-deep .mat-form-field-ripple {
+  background-color: #1976d2;
+}
+
+/* =========================
+   IMAGE UPLOAD (LIGHT)
+   ========================= */
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 14px;
+    color: #cfcfcf;
+  }
+
+  input[type='file'] {
+    background-color: #ffffff;
+    color: #000;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+}
+
+/* Image preview */
+.preview {
+  margin-top: 8px;
+
+  p {
+    font-size: 13px;
+    color: #cfcfcf;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+}
+
+/* =========================
+   ACTIONS & BUTTONS (LIGHT)
+   ========================= */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+/* Cancel button */
+::ng-deep button[mat-button] {
+  color: #ffffff;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Save button */
+::ng-deep button[mat-raised-button] {
+  background-color: #ffffff;
+  color: #121212;
+  border-radius: 8px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #eaeaea;
+  }
+
+  &:disabled {
+    background-color: #555;
+    color: #aaa;
+  }
+}

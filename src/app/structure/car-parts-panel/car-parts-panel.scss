@@ -1,8 +1,20 @@
 .car-parts-list {
   margin-left: 20px;
   margin-top: 70px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
+/* Responsive – 1 карта на ред за мобилни */
+@media (max-width: 900px) {
+  .car-parts-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FAB button */
 :host ::ng-deep .small-extended-fab {
   background-color: black !important;
   color: white;
@@ -18,8 +30,8 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 20px; /* add top margin as needed */
-  margin-left: 20px; /* add left margin as needed */
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 :host ::ng-deep .small-extended-fab:hover {

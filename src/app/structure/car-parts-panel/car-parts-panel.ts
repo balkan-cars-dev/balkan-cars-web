@@ -26,7 +26,15 @@ export class CarPartsPanel {
   parts$ = this.partService.getAllPart();
 
   openAddDialog() {
-    console.log("open");
-    this.dialog.open(AddPartDialogComponent, { width: '400px' });
+    const dialogRef = this.dialog.open(AddPartDialogComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.parts$ = this.partService.getAllPart();
+      }
+    });
   }
+
 }

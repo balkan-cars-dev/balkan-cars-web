@@ -1,21 +1,23 @@
-
 <div class="car-part-card">
   <img
     src="assets/parts/{{ part.imageUri | lowercase }}"
-    alt="{{ part.category }}"
+    alt="{{ part.subCategory }}"
     class="car-part-image"
   />
 
   <div class="car-part-info">
     <h3 class="car-part-title">
-      {{ part.state }} {{ part.category }} за {{ part.manufacturer }}
+      Продавам {{ part.state }} {{ part.subCategory }} за {{ part.car }}
     </h3>
+
     <p class="car-part-description">
       {{ part.description }}
     </p>
-    <p class="car-part-location">
-      <!--Публикувано: {{ part.updatedTs | date: 'd MMMM y г.' }} -->
-    </p>  </div>
+
+    <p class="car-part-manufacturer">
+      {{ part.manufacturer }}
+    </p>
+  </div>
 
   <div class="car-part-meta">
     <span class="car-part-price">{{ part.price }} лв.</span>
