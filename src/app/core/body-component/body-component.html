@@ -14,4 +14,4 @@
 
 <app-car-parts-panel *ngIf="selected === 'carparts'"></app-car-parts-panel>
 <app-blog-panel *ngIf="selected === 'blog'"></app-blog-panel>
-<app-login *ngIf="selected === 'login'"></app-login>
+<app-login *ngIf="selected === 'login'" (loginSuccess)="onLoginSuccess()"></app-login>

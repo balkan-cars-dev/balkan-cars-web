@@ -9,6 +9,40 @@ body {
   margin-left: 40px;
 }
 
+.my-listings-container {
+  padding: 20px;
+
+  h2 {
+    margin: 30px 0 20px 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 40px;
+  }
+
+  .car-parts-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .car-parts-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
 .car-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

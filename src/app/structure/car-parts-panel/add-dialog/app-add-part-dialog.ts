@@ -4,9 +4,13 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 import { CarPartsInterface } from '../../../Interfaces/car-parts-interface';
 import { CarPartsService } from '../../../services/car-parts-service';
-import {AuthService} from '../../../core/login-component/auth.service';
+import { AuthService } from '../../../core/login-component/auth.service';
+import { SubCategory, SubCategoryLabels } from '../../../core/enums/SubCategory';
+import { PartStateLabels } from '../../../core/enums/State';
 
 @Component({
   selector: 'app-add-part-dialog',
@@ -17,13 +21,21 @@ import {AuthService} from '../../../core/login-component/auth.service';
       <form #form="ngForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field class="full-width">
-          <mat-label>Category</mat-label>
-          <input matInput [(ngModel)]="carPart.subCategory" name="category" required>
+          <mat-label>Категория</mat-label>
+          <mat-select [(ngModel)]="carPart.subCategory" name="category" required>
+            <mat-option *ngFor="let cat of categories" [value]="cat">
+              {{ subCategoryLabels[cat] }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <mat-label>State</mat-label>
-          <input matInput [(ngModel)]="carPart.state" name="state" required>
+          <mat-label>Състояние</mat-label>
+          <mat-select [(ngModel)]="carPart.state" name="state" required>
+            <mat-option *ngFor="let st of states" [value]="st">
+              {{ stateLabels[st] }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field class="full-width">
@@ -95,10 +107,17 @@ import {AuthService} from '../../../core/login-component/auth.service';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatSelectModule,
+    CommonModule,
     FormsModule,
   ]
 })
 export class AddPartDialogComponent {
+
+  categories = Object.values(SubCategory);
+  states = ['NEW', 'USED'];
+  subCategoryLabels = SubCategoryLabels;
+  stateLabels = PartStateLabels;
 
   carPart: CarPartsInterface = {
     id: '',
@@ -110,7 +129,7 @@ export class AddPartDialogComponent {
     car: '',
     quantity: 0,
     imageUri: '',
-    userId: '',
+    sellerId: '',
   };
 
   imagePreview: string | ArrayBuffer | null = null;
@@ -144,7 +163,7 @@ export class AddPartDialogComponent {
 
     // Get userId from authentication service
     const userId = this.authService.getUserId();
-    this.carPart.userId = userId;
+    this.carPart.sellerId = userId;
 
     this.carPartsService.addPart(this.carPart).subscribe({
       next: (response: any) => {

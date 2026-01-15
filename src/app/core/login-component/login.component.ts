@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../login-component/auth.service';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @Output() loginSuccess = new EventEmitter<void>();
+  
   // Toggle between login and register mode
   isRegisterMode: boolean = false;
 
@@ -32,7 +33,7 @@ export class LoginComponent {
 
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   toggleMode() {
     this.isRegisterMode = !this.isRegisterMode;
@@ -60,7 +61,9 @@ export class LoginComponent {
   login() {
     this.errorMessage = '';
     this.authService.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/cars']),
+      next: () => {
+        this.loginSuccess.emit();
+      },
       error: (err) => this.errorMessage = 'Invalid email or password'
     });
   }
@@ -70,7 +73,7 @@ export class LoginComponent {
     this.authService.register(this.registerData).subscribe({
       next: (res) => {
         this.clearForms();
-        this.router.navigate(['/cars']);
+        this.loginSuccess.emit();
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Registration failed';

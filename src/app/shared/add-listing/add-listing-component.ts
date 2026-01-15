@@ -9,6 +9,7 @@ import { TransmissionType, TransmissionTypeLabels } from '../../core/enums/Trans
 import { State, StateLabels } from '../../core/enums/State';
 import { ExtrasByCategory, ExtraLabels } from './extras-grouped';
 import { AuthService } from '../../core/login-component/auth.service';
+import { DefinedCarsService } from '../../services/defined-cars-service';
 
 @Component({
   selector: 'app-add-listing-component',
@@ -33,15 +34,21 @@ export class AddListingComponent implements OnInit {
   extraLabels = ExtraLabels;
 
   images: File[] = [];
+  brands: string[] = [];
 
   constructor(
     private fb: FormBuilder,
     private listingService: ListingService,
     private carsService: CarsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private definedCarsService: DefinedCarsService
   ) {}
 
   ngOnInit(): void {
+    this.definedCarsService.getBrands().subscribe(brands => {
+      this.brands = brands;
+    });
+
     this.form = this.fb.group({
       make: ['', Validators.required],
       model: ['', Validators.required],

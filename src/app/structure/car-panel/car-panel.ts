@@ -9,11 +9,13 @@ import { CarCardComponent } from '../../shared/car-card-component/car-card-compo
 import { FiltersComponent } from "../../shared/filters-component/filters-component";
 import { Listing, ListingWithCar } from '../../Interfaces/listing-interface';
 import { ListingDetailModalComponent } from '../../shared/listing-detail-modal/listing-detail-modal.component';
+import { CarPartsService } from '../../services/car-parts-service';
+import { CarPartsCardComponent } from '../../shared/car-parts-card-component/car-parts-card-component';
 
 @Component({
   selector: 'app-car-panel',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, CarCardComponent, FiltersComponent, ListingDetailModalComponent],
+  imports: [CommonModule, AsyncPipe, CarCardComponent, FiltersComponent, ListingDetailModalComponent, CarPartsCardComponent],
   templateUrl: './car-panel.html',
   styleUrl: './car-panel.scss',
 })
@@ -23,9 +25,13 @@ export class CarPanel implements OnInit {
   private carsService = inject(CarsService);
   private listingService = inject(ListingService);
   private authService = inject(AuthService);
+  private partsService = inject(CarPartsService);
 
   private carsSubject = new BehaviorSubject<any[]>([]);
   cars$ = this.carsSubject.asObservable();
+
+  private userPartsSubject = new BehaviorSubject<any[]>([]);
+  userParts$ = this.userPartsSubject.asObservable();
 
   selectedListing: any = null;
   isModalOpen = false;
@@ -96,6 +102,11 @@ export class CarPanel implements OnInit {
         next: cars => this.carsSubject.next(cars),
         error: err => console.error('Error loading my listings:', err)
       });
+
+      this.partsService.getUserParts(this.authService.getUserId()).subscribe({
+        next: parts => this.userPartsSubject.next(parts),
+        error: err => console.error('Error loading user parts:', err)
+      });
     } else {
       this.listingService.getAll().pipe(
         switchMap(listings => {
@@ -149,6 +160,10 @@ export class CarPanel implements OnInit {
   closeModal() {
     this.isModalOpen = false;
     this.selectedListing = null;
+  }
+
+  onPartFavoriteClick(partId: string) {
+    console.log('Part favorite clicked:', partId);
   }
 
   deleteListing(listingId: string) {

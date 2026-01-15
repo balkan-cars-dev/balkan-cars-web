@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarListing } from '../../Interfaces/car-interface';
+import { DefinedCarsService } from '../../services/defined-cars-service';
 
 @Component({
   selector: 'app-filters-component',
@@ -9,13 +10,13 @@ import { CarListing } from '../../Interfaces/car-interface';
   templateUrl: './filters-component.html',
   styleUrl: './filters-component.scss',
 })
-export class FiltersComponent {
+export class FiltersComponent implements OnInit {
   @Output() search = new EventEmitter<any>();
 
   cars: CarListing[] = [];          // original (all cars you already fetched once)
   filteredCars: CarListing[] = [];  // what you render
 
-  brands = ['Всички', 'BMW', 'Audi', 'Mercedes-Benz', 'Volkswagen', 'Toyota'];
+  brands: string[] = ['Всички'];
   fuels = ['All', 'PETROL', 'DISEL', 'HYBRID', 'ELECTRIC'];
   transmissions = ['All', 'MANUAL', 'AUTOMATIC'];
   years = ['Всички', '2025', '2024', '2023', '2022', '2021'];
@@ -32,12 +33,20 @@ export class FiltersComponent {
     damaged: false,
   };
 
+  constructor(private definedCarsService: DefinedCarsService) {}
+
+  ngOnInit(): void {
+    this.definedCarsService.getBrands().subscribe(brands => {
+      this.brands = ['Всички', ...brands];
+    });
+  }
+
   onSearch() {
     this.search.emit(this.filters);
   }
 
   onFiltersChanged(filters: any) {
-  this.filteredCars = this.cars.filter(car => {
+    this.filteredCars = this.cars.filter(car => {
     const brandOk =
       filters.brand === 'Всички' || car.brand === filters.brand;
 

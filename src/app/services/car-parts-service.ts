@@ -20,6 +20,10 @@ export class CarPartsService {
     return this.http.post<CarPartsInterface>(`${this.baseUrl}/parts`, part);
   }
 
+  getUserParts(userId: string): Observable<CarPartsInterface[]> {
+    return this.http.get<CarPartsInterface[]>(`${this.baseUrl}/parts/seller/${userId}`);
+  }
+
   getUserFavorites(userId: string): Observable<CarPartsInterface[]> {
     return this.http.get<CarPartsInterface[]>(`${this.baseUrl}/part-wishlist/user/${userId}`);
   }

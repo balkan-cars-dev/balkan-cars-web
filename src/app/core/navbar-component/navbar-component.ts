@@ -57,10 +57,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   select(section: 'vehicles' | 'carparts' | 'blog' | 'add' | 'login' | 'my-listings') {
-  this.selected = section;
-  this.sectionChange.emit(section);
-  this.showDropdown = false;
-}
+    // Check if user is trying to access protected sections
+    const protectedSections: ('add' | 'my-listings' | 'carparts')[] = ['add', 'my-listings', 'carparts'];
+    
+    if (protectedSections.includes(section as 'add' | 'my-listings' | 'carparts') && !this.isLoggedIn) {
+      // Redirect to login if not authenticated
+      this.selected = 'login';
+      this.sectionChange.emit('login');
+      this.showDropdown = false;
+      return;
+    }
+    
+    this.selected = section;
+    this.sectionChange.emit(section);
+    this.showDropdown = false;
+  }
 
   toggleDropdown(event: Event) {
     event.stopPropagation();

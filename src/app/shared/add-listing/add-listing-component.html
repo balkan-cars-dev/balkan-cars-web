@@ -10,7 +10,10 @@
       <div class="column">
 
         <label>Марка</label>
-        <input formControlName="make" type="text" placeholder="e.g. BMW"/>
+        <select formControlName="make">
+          <option value="">Изберете марка...</option>
+          <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+        </select>
 
         <label>Модел</label>
         <input formControlName="model" type="text" placeholder="e.g. 340"/>

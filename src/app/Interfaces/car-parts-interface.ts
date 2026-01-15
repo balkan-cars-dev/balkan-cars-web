@@ -10,5 +10,5 @@ export interface CarPartsInterface {
   quantity: number;
  // updatedTs: Date;
   imageUri: string;
-  userId: string;
+  sellerId: string;
 }
