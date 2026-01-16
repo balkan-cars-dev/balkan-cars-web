@@ -2,5 +2,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
+
+  /* Keep your original padding for top/left/right */
   padding: 2rem;
+
+  /* Add extra space specifically to the bottom */
+  padding-bottom: 100px;
 }

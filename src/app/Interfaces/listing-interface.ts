@@ -9,6 +9,7 @@ export interface Listing {
   isActive: boolean;
   extras?: string[];
   groupedExtras?: any;
+  phone: string;
 }
 
 export interface ListingWithCar extends Listing {
