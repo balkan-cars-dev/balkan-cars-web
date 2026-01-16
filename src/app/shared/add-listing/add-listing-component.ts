@@ -33,8 +33,10 @@ export class AddListingComponent implements OnInit {
   extras = ExtrasByCategory;
   extraLabels = ExtraLabels;
 
-  images: File[] = [];
   brands: string[] = [];
+
+  // Variable to store the encoded image string
+  imageBase64: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -87,9 +89,17 @@ export class AddListingComponent implements OnInit {
     return selected.includes(extra);
   }
 
+  // UPDATED: Convert file to Base64 String
   uploadImages(event: any) {
-    const files = event.target.files;
-    this.images = [...files];
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // This result looks like: "data:image/jpeg;base64,/9j/4AAQSkZJRg..."
+        this.imageBase64 = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   submit() {
@@ -100,9 +110,9 @@ export class AddListingComponent implements OnInit {
 
     const f = this.form.value;
 
-    // Step 1: Create the Car DTO
+    // Step 1: Create the Car DTO with the encoded image string
     const carDto = {
-      id: null, // let backend generate
+      id: null,
       vin: f.vin,
       brand: f.make,
       model: f.model,
@@ -111,15 +121,15 @@ export class AddListingComponent implements OnInit {
       transmission: f.transmission,
       mileage: f.mileage,
       enginePower: f.enginePower,
-      color: f.color
+      color: f.color,
+      image: this.imageBase64 // Send the string directly
     };
 
-    // Step 2: Create the car first
+    // Step 2: Send as standard JSON
     this.carsService.createCar(carDto).subscribe({
       next: (createdCar) => {
         const carId = createdCar.id;
 
-        // Step 3: Construct listing DTO
         const title = `${f.make} ${f.model} (${f.year})`;
 
         const groupedExtras: Record<string, string[]> = {};
@@ -137,7 +147,7 @@ export class AddListingComponent implements OnInit {
           title: title,
           description: f.description,
           carId: carId,
-          sellerId: this.authService.getUserId(), 
+          sellerId: this.authService.getUserId(),
           price: f.priceEur,
           location: f.region,
           isActive: true,
@@ -145,9 +155,12 @@ export class AddListingComponent implements OnInit {
           groupedExtras: groupedExtras,
         };
 
-        // Step 4: Create the listing
         this.listingService.create(listingDto).subscribe({
-          next: () => alert('Обявата е създадена успешно!'),
+          next: () => {
+            alert('Обявата е създадена успешно!');
+            this.form.reset();
+            this.imageBase64 = null;
+          },
           error: (e) => console.error('Listing creation error', e),
         });
       },

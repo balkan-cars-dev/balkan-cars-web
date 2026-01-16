@@ -2,14 +2,20 @@
 
 <div *ngIf="mode === 'my-listings'" class="my-listings-container">
 
-  <h2 style="color: black">Моите обяви за автомобили</h2>
+  <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2 style="color: black; margin: 0;">Моите обяви за автомобили</h2>
+    <button (click)="openAddModal()" class="btn-add-listing" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      + Добави Обява
+    </button>
+  </div>
+
   <div class="car-list">
     @for (car of cars$ | async; track car.id) {
       <app-car-card-component [car]="car" (cardClick)="onCardClick($event)"></app-car-card-component>
     }
   </div>
 
-  <h2 style="color: black">Моите обяви за части</h2>
+  <h2 style="color: black; margin-top: 40px;">Моите обяви за части</h2>
   <div class="car-parts-list">
     @for (part of userParts$ | async; track part.id) {
       <app-car-parts-card-component
@@ -34,3 +40,13 @@
   (close)="closeModal()"
   (deleteClick)="deleteListing($event)">
 </app-listing-detail-modal>
+
+<div *ngIf="isAddModalOpen" class="modal-overlay" (click)="closeAddModal()" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+  <div class="modal-content" (click)="$event.stopPropagation()" style="background: white; padding: 20px; border-radius: 8px; max-width: 900px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative;">
+
+    <span (click)="closeAddModal()" style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
+
+    <app-add-listing-component (listingCreated)="onListingCreated()"></app-add-listing-component>
+
+  </div>
+</div>

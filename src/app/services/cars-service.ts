@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {CarListing} from '../Interfaces/car-interface';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { CarListing } from '../Interfaces/car-interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { CarDto } from '../Interfaces/car-dto-interface';
 
 @Injectable({
@@ -10,18 +10,18 @@ import { CarDto } from '../Interfaces/car-dto-interface';
 export class CarsService {
   private baseUrl = 'http://localhost:8080/cars';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getAllCars(): Observable<CarListing[]> {
-    return this.http.get<CarListing[]>(this.baseUrl)
+    return this.http.get<CarListing[]>(this.baseUrl);
   }
 
   getCarById(id: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
-  createCar(car: CarDto): Observable<CarListing> {
+  // UPDATED: Simply sends the object as JSON
+  createCar(car: any): Observable<CarListing> {
     return this.http.post<CarListing>(this.baseUrl, car);
   }
 }

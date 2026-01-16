@@ -1,13 +1,11 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { BehaviorSubject, combineLatest, forkJoin, map, switchMap } from 'rxjs';
-import { CarListing } from '../../Interfaces/car-interface';
 import { CarsService } from '../../services/cars-service';
 import { ListingService } from '../../services/listing-service';
 import { AuthService } from '../../core/login-component/auth.service';
 import { CarCardComponent } from '../../shared/car-card-component/car-card-component';
 import { FiltersComponent } from "../../shared/filters-component/filters-component";
-import { Listing, ListingWithCar } from '../../Interfaces/listing-interface';
 import { ListingDetailModalComponent } from '../../shared/listing-detail-modal/listing-detail-modal.component';
 import { CarPartsService } from '../../services/car-parts-service';
 import { CarPartsCardComponent } from '../../shared/car-parts-card-component/car-parts-card-component';
@@ -65,64 +63,41 @@ export class CarPanel implements OnInit {
 
   ngOnInit() {
     if (this.mode === 'my-listings') {
-      this.listingService.getUserListings(this.authService.getUserId()).pipe(
-        switchMap(listings => {
-          if (!listings || listings.length === 0) {
-            return [[]];
-          }
-          // Filter out listings with null/invalid carId
-          const validListings = listings.filter(listing => listing.carId != null);
-          
-          if (validListings.length === 0) {
-            return [[]];
-          }
-          
-          const listingsWithCars = validListings.map(listing =>
-            this.carsService.getCarById(listing.carId).pipe(
-              map(car => ({
-                id: listing.id,
-                brand: car.brand,
-                model: car.model,
-                price: listing.price,
-                mileage: car.mileage,
-                region: listing.location || 'Н/Д',
-                year: car.year,
-                fuel: car.fuelType,
-                transmission: car.transmission,
-                imageUrl: 'assets/car-placeholder.jpg',
-                date: new Date().toLocaleDateString(),
-                listingData: listing,
-                carData: car
-              }))
-            )
-          );
-          return forkJoin(listingsWithCars);
-        })
-      ).subscribe({
-        next: cars => this.carsSubject.next(cars),
-        error: err => console.error('Error loading my listings:', err)
-      });
+      this.loadListings(this.listingService.getUserListings(this.authService.getUserId()));
 
       this.partsService.getUserParts(this.authService.getUserId()).subscribe({
         next: parts => this.userPartsSubject.next(parts),
         error: err => console.error('Error loading user parts:', err)
       });
     } else {
-      this.listingService.getAll().pipe(
-        switchMap(listings => {
-          if (!listings || listings.length === 0) {
-            return [[]];
-          }
-          // Filter out listings with null/invalid carId
-          const validListings = listings.filter(listing => listing.carId != null);
-          
-          if (validListings.length === 0) {
-            return [[]];
-          }
-          
-          const listingsWithCars = validListings.map(listing =>
-            this.carsService.getCarById(listing.carId).pipe(
-              map(car => ({
+      this.loadListings(this.listingService.getAll());
+    }
+  }
+
+  private loadListings(sourceObservable: any) {
+    sourceObservable.pipe(
+      switchMap((listings: any[]) => {
+        if (!listings || listings.length === 0) {
+          return [[]];
+        }
+        const validListings = listings.filter(listing => listing.carId != null);
+
+        if (validListings.length === 0) {
+          return [[]];
+        }
+
+        const listingsWithCars = validListings.map(listing =>
+          this.carsService.getCarById(listing.carId).pipe(
+            map(car => {
+
+              // UPDATED IMAGE LOGIC:
+              // If we have a string, use it (it is likely Base64).
+              // Otherwise fallback to placeholder.
+              const imageUrl = (car.image && car.image.length > 0)
+                ? car.image
+                : 'assets/car-placeholder.jpg';
+
+              return {
                 id: listing.id,
                 brand: car.brand,
                 model: car.model,
@@ -132,20 +107,20 @@ export class CarPanel implements OnInit {
                 year: car.year,
                 fuel: car.fuelType,
                 transmission: car.transmission,
-                imageUrl: 'assets/car-placeholder.jpg',
+                imageUrl: imageUrl,
                 date: new Date().toLocaleDateString(),
                 listingData: listing,
                 carData: car
-              }))
-            )
-          );
-          return forkJoin(listingsWithCars);
-        })
-      ).subscribe({
-        next: cars => this.carsSubject.next(cars),
-        error: err => console.error('Error loading all listings:', err)
-      });
-    }
+              };
+            })
+          )
+        );
+        return forkJoin(listingsWithCars);
+      })
+    ).subscribe({
+      next: (cars: any) => this.carsSubject.next(cars),
+      error: (err: any) => console.error('Error loading listings:', err)
+    });
   }
 
   onCarSearch(filters: any) {

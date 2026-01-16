@@ -23,5 +23,6 @@ export interface ListingWithCar extends Listing {
     mileage: number;
     enginePower: number;
     color: string;
+    image: string;
   };
 }
