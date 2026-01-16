@@ -9,11 +9,12 @@ import { FiltersComponent } from "../../shared/filters-component/filters-compone
 import { ListingDetailModalComponent } from '../../shared/listing-detail-modal/listing-detail-modal.component';
 import { CarPartsService } from '../../services/car-parts-service';
 import { CarPartsCardComponent } from '../../shared/car-parts-card-component/car-parts-card-component';
+import {AddListingComponent} from '../../shared/add-listing/add-listing-component';
 
 @Component({
   selector: 'app-car-panel',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, CarCardComponent, FiltersComponent, ListingDetailModalComponent, CarPartsCardComponent],
+  imports: [CommonModule, AsyncPipe, CarCardComponent, FiltersComponent, ListingDetailModalComponent, CarPartsCardComponent, AddListingComponent],
   templateUrl: './car-panel.html',
   styleUrl: './car-panel.scss',
 })

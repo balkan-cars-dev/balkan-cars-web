@@ -19,7 +19,7 @@
         </div>
 
         <div>
-            <label>Максимална цена (лв)</label>
+            <label>Максимална цена (euro)</label>
             <input [(ngModel)]="filters.maxPrice" type="number"
                 placeholder="Напр. 20000" class="filter-field">
         </div>
@@ -47,11 +47,11 @@
         </div>
     </div>
 
-    <div class="checkboxes">
+ <!--   <div class="checkboxes">
         <label><input type="checkbox" [(ngModel)]="filters.new"> Нов</label>
         <label><input type="checkbox" [(ngModel)]="filters.used">
             Употребяван</label>
-    </div>
+    </div>-->
 
     <div class="actions">
         <button (click)="onSearch()">🔍 Търси</button>
