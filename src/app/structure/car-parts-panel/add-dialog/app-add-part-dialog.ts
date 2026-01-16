@@ -130,6 +130,7 @@ export class AddPartDialogComponent {
     quantity: 0,
     imageUri: '',
     sellerId: '',
+    phone: ''
   };
 
   imagePreview: string | ArrayBuffer | null = null;

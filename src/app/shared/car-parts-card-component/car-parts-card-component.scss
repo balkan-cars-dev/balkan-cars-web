@@ -1,5 +1,6 @@
 .car-part-card {
-  width: 100%;
+  width: 98%;
+  height: 130px; /* Fixed short height */
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -19,40 +20,58 @@
   width: 160px;
   height: 100%;
   object-fit: cover;
+  justify-content: center;
 }
 
 .car-part-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 14px 18px;
+  padding: 10px 14px;
 }
 
 .car-part-title {
-  margin: 0 0 10px;
+  margin: 0 0 5px;
   font-size: 16px;
   font-weight: 600;
   color: #fff;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .car-part-description {
   font-size: 14px;
   color: #ddd;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  /* Optional: Limit description to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .car-part-manufacturer {
   font-size: 13px;
   color: #aaa;
+  margin-top: auto; /* Pushes manufacturer to bottom of info section */
 }
 
 .car-part-meta {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
-  padding: 14px 18px;
+  justify-content: space-between; /* Spreads Top (Price/Phone) and Bottom (Heart) */
+  padding: 10px 14px;
+  min-width: 100px; /* Ensures space for phone number */
+}
+
+/* New wrapper to group Price and Phone together */
+.meta-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .car-part-price {
@@ -60,6 +79,16 @@
   color: #fff;
   font-size: 18px;
   letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+/* New Phone Styling */
+.car-part-phone {
+  font-size: 13px;
+  color: #4ade80; /* Light green to indicate contact info */
+  margin-top: 4px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .favorite-icon {
@@ -68,6 +97,7 @@
   color: #aaa;
   transition: color 0.2s ease, transform 0.2s ease;
   user-select: none;
+  line-height: 1;
 }
 
 .favorite-icon:hover {

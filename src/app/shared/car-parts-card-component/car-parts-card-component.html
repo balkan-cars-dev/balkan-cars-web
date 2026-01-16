@@ -1,6 +1,7 @@
 <div class="car-part-card">
   <img
-    src="assets/parts/{{ part.imageUri | lowercase }}"
+    *ngIf="part.imageUri"
+    [src]="part.imageUri"
     alt="{{ part.subCategory }}"
     class="car-part-image"
   />
@@ -20,7 +21,18 @@
   </div>
 
   <div class="car-part-meta">
-    <span class="car-part-price">{{ part.price }} лв.</span>
-    <span class="favorite-icon" [class.favorited]="isFavorite" (click)="onFavoriteClick($event)">{{ isFavorite ? '♥' : '♡' }}</span>
+    <div class="meta-top">
+      <span class="car-part-price">{{ part.price }} лв.</span>
+      <span class="car-part-phone" *ngIf="part.phone">
+        📞 {{ part.phone }}
+      </span>
+    </div>
+
+    <span
+      class="favorite-icon"
+      [class.favorited]="isFavorite"
+      (click)="onFavoriteClick($event)">
+      {{ isFavorite ? '♥' : '♡' }}
+    </span>
   </div>
 </div>
